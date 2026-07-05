@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有害信息录入小工具 - 安装</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f0f5f0; min-height: 100vh; padding: 20px; }
+.container { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(82,183,136,0.15); padding: 32px; max-width: 640px; margin: 20px auto; }
+h1 { color: #2D6A4F; font-size: 22px; margin-bottom: 4px; }
+.subtitle { color: #888; font-size: 14px; margin-bottom: 20px; }
+.step { background: #F0FFF4; border-left: 3px solid #52B788; padding: 12px 16px; margin-bottom: 10px; border-radius: 4px; font-size: 14px; color: #333; line-height: 1.7; }
+.step b { color: #2D6A4F; }
+.step .num { display: inline-block; background: #52B788; color: #fff; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 50%; font-size: 13px; margin-right: 6px; }
+.btn { display: inline-block; background: #52B788; color: #fff !important; text-decoration: none; padding: 10px 28px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; border: none; transition: all 0.2s; }
+.btn:hover { background: #74C69D; }
+.btn-test { background: #95D5B2; color: #2D6A4F !important; }
+.btn-test:hover { background: #B7E4C7; }
+.bookmark-area { text-align: center; margin: 16px 0; padding: 16px; background: #E8F5E9; border: 2px dashed #52B788; border-radius: 8px; }
+.hint { color: #666; font-size: 13px; margin-top: 6px; }
+.warn { background: #FFF3E0; border-left: 3px solid #FF9800; padding: 10px 14px; margin-top: 12px; border-radius: 4px; font-size: 13px; color: #E65100; line-height: 1.6; }
+.success { background: #E8F5E9; border-left: 3px solid #52B788; padding: 10px 14px; margin-top: 12px; border-radius: 4px; font-size: 13px; color: #2D6A4F; line-height: 1.6; }
+.manual-box { width: 100%; height: 60px; margin-top: 8px; font-size: 11px; border: 1px solid #ccc; border-radius: 4px; padding: 6px; word-break: break-all; resize: vertical; }
+.divider { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+.section-title { font-size: 16px; color: #2D6A4F; margin-bottom: 10px; font-weight: bold; }
+.kbd { display: inline-block; background: #eee; border: 1px solid #ccc; border-radius: 3px; padding: 1px 6px; font-size: 12px; font-family: monospace; }
+.tab-area { display: flex; gap: 8px; margin-bottom: 16px; }
+.tab { padding: 8px 20px; border-radius: 6px 6px 0 0; cursor: pointer; font-size: 14px; border: 2px solid #eee; border-bottom: none; background: #f9f9f9; color: #666; }
+.tab.active { background: #52B788; color: #fff; border-color: #52B788; }
+.tab-content { display: none; border: 2px solid #52B788; border-radius: 0 6px 6px 6px; padding: 20px; }
+.tab-content.active { display: block; }
+.code-box { background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; word-break: break-all; margin: 8px 0; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📋 有害信息录入小工具 v2.0</h1>
+<p class="subtitle">云端书签版 - 超短代码，绝不会被截断</p>
+
+<div class="tab-area">
+  <div class="tab active" onclick="showTab(0)">✨ 推荐：手动添加书签</div>
+  <div class="tab" onclick="showTab(1)">👉 拖拽添加</div>
+</div>
+
+<div class="tab-content active" id="tab0">
+  <div class="step"><span class="num">1</span>显示书签栏：按 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">B</span> 调出书签栏</div>
+  <div class="step"><span class="num">2</span>在书签栏上 <b>右键</b> → 点"添加网页"（或"添加书签"）</div>
+  <div class="step"><span class="num">3</span>名称填：<b>有害信息录入</b></div>
+  <div class="step"><span class="num">4</span>网址框内容：<b>先点下面"复制"按钮</b>，然后粘贴到网址框里
+    <div class="code-box" id="urlbox">加载中...</div>
+    <div style="margin-top:8px;text-align:center;">
+      <button class="btn" onclick="copyUrl()">📋 复制网址</button>
+    </div>
+  </div>
+  <div class="step"><span class="num">5</span>点"保存"完成添加</div>
+  <div class="step"><span class="num">6</span>打开举报网站 <b>http://111.33.174.247:10011</b></div>
+  <div class="step"><span class="num">7</span>点击书签栏中的<b>"有害信息录入"</b>，右上角就会出现录入面板</div>
+  <div class="success">✅ 书签代码只有一行，所有浏览器都支持，不会被截断！</div>
+</div>
+
+<div class="tab-content" id="tab1">
+  <div class="step"><span class="num">1</span>显示书签栏：按 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">B</span></div>
+  <div class="step"><span class="num">2</span>把下面绿色按钮<b>拖到</b>书签栏上</div>
+  <div class="bookmark-area" id="dragArea">
+    <a class="btn" id="dragLink" href="#">🚀 有害信息录入</a>
+    <p class="hint">↑ 用鼠标拖动到书签栏</p>
+  </div>
+  <div class="step"><span class="num">3</span>打开举报网站，点击书签即可</div>
+</div>
+
+<hr class="divider">
+
+<div class="section-title">🧪 先测试书签是否正常工作</div>
+<p style="font-size:13px;color:#666;margin-bottom:10px;">先点击下面按钮验证你的浏览器是否支持 javascript: 书签：</p>
+<div class="bookmark-area">
+  <a class="btn btn-test" href="javascript:void(alert('✅ 书签功能正常!'))">🧪 点我测试</a>
+  <p class="hint">点击后应该弹出"✅ 书签功能正常!"的提示</p>
+</div>
+
+<hr class="divider">
+
+<div class="section-title">📥 备用：Tampermonkey 油猴脚本</div>
+<div class="warn" style="margin-top:0;">
+  如果书签方式不行，可以用 Tampermonkey：<br>
+  1. 安装 <b>Tampermonkey</b> 扩展<br>
+  2. 点图标 → "添加新脚本"<br>
+  3. 复制下面内容粘贴进去，保存即可<br>
+  4. 打开举报网站，自动出现面板
+  <textarea class="manual-box" id="tmscript" style="height:100px;" readonly onclick="this.select()">// ==UserScript==
+// @name         有害信息录入小工具 v2.0
+// @match        http://111.33.174.247:10011/*
+// @grant        none
+// @run-at       document-idle
+// ==/UserScript==
+
+// 脚本加载地址（同目录下 tool.js）
+var s = document.createElement('script');
+s.src = location.origin + '/tool.js';
+document.head.appendChild(s);</textarea>
+  <div style="margin-top:8px;text-align:center;">
+    <button class="btn" onclick="copyTm()">📋 复制脚本</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+// jsDelivr CDN 固定地址，不依赖 Pages 部署
+var scriptUrl = 'https://cdn.jsdelivr.net/gh/1545235169/xj-report@main/tool.js';
+var bookmarklet = 'javascript:(function(){var s=document.createElement("script");s.src="' + scriptUrl + '?v=1.0&t="+Date.now();document.head.appendChild(s);})();';
+
+document.getElementById('urlbox').textContent = bookmarklet;
+document.getElementById('dragLink').href = bookmarklet;
+
+function showTab(idx) {
+  var tabs = document.querySelectorAll('.tab');
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    if (i === idx) {
+      tabs[i].classList.add('active');
+      contents[i].classList.add('active');
+    } else {
+      tabs[i].classList.remove('active');
+      contents[i].classList.remove('active');
+    }
+  }
+}
+
+function copyUrl() {
+  var text = document.getElementById('urlbox').textContent;
+  try {
+    navigator.clipboard.writeText(text).then(function() {
+      alert('✅ 已复制到剪贴板!\n现在去书签栏右键→添加网页→粘贴到网址框');
+    }).catch(function() {
+      fallbackCopy(text);
+    });
+  } catch(e) {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    alert('✅ 已复制到剪贴板!\n现在去书签栏右键→添加网页→粘贴到网址框');
+  } catch(e) {
+    alert('请手动 Ctrl+C 复制:\n' + text);
+  }
+  document.body.removeChild(ta);
+}
+
+function copyTm() {
+  var box = document.getElementById('tmscript');
+  box.select();
+  try {
+    document.execCommand('copy');
+    alert('✅ 已复制! 去 Tampermonkey 新建脚本并粘贴');
+  } catch(e) {
+    alert('请手动 Ctrl+C 复制');
+  }
+}
+</script>
+</body>
+</html>
