@@ -7,51 +7,65 @@
 <style>
 * { margin:0; padding:0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f0f5f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-.box { background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(82,183,136,0.15); padding: 36px 32px; max-width: 520px; width: 100%; }
-h1 { color: #2D6A4F; font-size: 20px; margin-bottom: 20px; text-align: center; }
-.step { font-size: 14px; color: #333; padding: 8px 0; line-height: 1.8; }
-.step b { color: #2D6A4F; }
-kbd { background: #eee; border: 1px solid #ccc; border-radius: 3px; padding: 1px 6px; font-size: 12px; }
-.drag-area { text-align: center; margin: 20px 0; padding: 24px 16px; background: #E8F5E9; border: 3px dashed #52B788; border-radius: 12px; }
-.drag-btn { display: inline-block; background: #52B788; color: #fff !important; text-decoration: none; padding: 14px 36px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: grab; border: none; user-select: none; }
-.drag-btn:active { cursor: grabbing; }
-.hint { font-size: 13px; color: #666; margin-top: 10px; }
-.test { text-align: center; margin-top: 20px; }
-.test-btn { display: inline-block; background: #95D5B2; color: #2D6A4F !important; text-decoration: none; padding: 8px 20px; border-radius: 6px; font-size: 13px; font-weight: bold; border: none; cursor: pointer; }
-.test p { font-size: 12px; color: #999; margin-top: 6px; }
-.backup { margin-top: 20px; font-size: 12px; color: #888; text-align: center; line-height: 1.8; }
-.backup a { color: #52B788; cursor: pointer; }
-#manual { display: none; margin-top: 12px; padding: 12px; background: #f9f9f9; border-radius: 6px; font-size: 12px; color: #555; line-height: 1.7; }
+.box { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(82,183,136,0.12); padding: 36px 32px; max-width: 460px; width: 100%; }
+h1 { color: #2D6A4F; font-size: 20px; margin-bottom: 24px; text-align: center; }
+.test { text-align: center; margin-bottom: 24px; }
+.test-btn { display: inline-block; background: #95D5B2; color: #2D6A4F !important; text-decoration: none; padding: 10px 28px; border-radius: 8px; font-size: 14px; font-weight: bold; border: none; cursor: pointer; }
+.test-btn:hover { background: #74C69D; }
+.test-result { font-size: 12px; color: #999; margin-top: 10px; }
+.card { background: #F8FBF9; border: 1px solid #D8F3DC; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px; }
+.card-num { width: 28px; height: 28px; background: #52B788; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+.card-body { flex: 1; font-size: 14px; color: #333; line-height: 1.8; }
+kbd { background: #eee; border: 1px solid #ccc; border-radius: 4px; padding: 1px 7px; font-size: 12px; font-family: monospace; }
+.drag-area { text-align: center; padding: 24px 16px; background: #E8F5E9; border: 3px dashed #52B788; border-radius: 12px; margin-top: 4px; }
+.drag-btn { display: inline-block; background: #52B788; color: #fff !important; text-decoration: none; padding: 14px 36px; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: grab; border: none; user-select: none; box-shadow: 0 3px 10px rgba(82,183,136,0.25); }
+.drag-btn:active { cursor: grabbing; transform: scale(0.97); }
+.hint { font-size: 12px; color: #888; margin-top: 8px; }
+#manual { display: none; margin-top: 16px; padding: 16px; background: #FFF5F5; border: 1px solid #FFD6D6; border-radius: 10px; font-size: 12px; color: #555; line-height: 1.9; }
 #manual b { color: #2D6A4F; }
-.code { background: #1e1e1e; color: #d4d4d4; padding: 8px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 11px; word-break: break-all; margin-top: 6px; }
+.manual-title { font-weight: bold; color: #E76F51; margin-bottom: 8px; font-size: 13px; }
+.code { background: #1e1e1e; color: #d4d4d4; padding: 10px; border-radius: 6px; font-family: 'Consolas', monospace; font-size: 11px; word-break: break-all; margin-top: 8px; }
+.copy-btn { margin-top: 8px; background: #52B788; color: #fff; border: none; padding: 7px 20px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: bold; }
 </style>
 </head>
 <body>
 <div class="box">
   <h1>有害信息录入工具</h1>
 
-  <div class="step">① 按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> 显示书签栏</div>
-  <div class="step">② 把下面按钮<span style="color:#E76F51;font-weight:bold;">拖到</span>书签栏</div>
-
-  <div class="drag-area">
-    <a class="drag-btn" id="dragLink" href="#">🚀 有害信息录入</a>
-    <p class="hint">按住按钮拖到浏览器顶部书签栏</p>
-  </div>
-
-  <div class="step">③ <a href="http://111.33.174.247:10011/#/login" target="_blank" style="color:#52B788;font-weight:bold;text-decoration:none;">打开津小卫</a>，点书签栏「有害信息录入」</div>
-
   <div class="test">
     <a class="test-btn" href="javascript:void(alert('✅ 支持！'))">先测试浏览器</a>
-    <p>弹出提示 = 可用｜无反应 = <a onclick="document.getElementById('manual').style.display='block'" style="color:#E76F51;cursor:pointer;">用手动安装</a></p>
+    <p class="test-result">可用 <span style="color:#52B788;font-weight:bold;">↓</span> ｜ 无反应 <span style="color:#E76F51;font-weight:bold;">→</span> <a onclick="document.getElementById('manual').style.display='block'" style="color:#E76F51;cursor:pointer;text-decoration:underline;">手动安装</a></p>
+  </div>
+
+  <div class="card">
+    <div class="card-num">1</div>
+    <div class="card-body">按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> 显示书签栏</div>
+  </div>
+
+  <div class="card">
+    <div class="card-num">2</div>
+    <div class="card-body">
+      把下面按钮拖到书签栏
+      <div class="drag-area">
+        <a class="drag-btn" id="dragLink" href="#">🚀 有害信息录入</a>
+        <p class="hint">按住按钮拖到浏览器顶部书签栏</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-num">3</div>
+    <div class="card-body"><a href="http://111.33.174.247:10011/#/login" target="_blank" style="color:#52B788;font-weight:bold;text-decoration:underline;">打开津小卫</a>，进入有害信息举报板块，点书签栏「有害信息录入」</div>
   </div>
 
   <div id="manual">
-    <div style="font-weight:bold;color:#E76F51;margin-bottom:6px;">手动安装（拖拽失败时用）</div>
-    <div>1. 书签栏<span style="color:#E76F51;font-weight:bold;">右键 → 添加网页</span></div>
-    <div>2. 名称：<b>有害信息录入</b></div>
-    <div>3. 网址框<span style="color:#E76F51;font-weight:bold;">粘贴下面代码</span>，保存</div>
+    <div class="manual-title">手动安装（拖拽失败时用）</div>
+    <div>1. 随便打开一个网页（如百度），按 <kbd>Ctrl</kbd>+<kbd>D</kbd> 收藏到书签栏</div>
+    <div>2. 书签栏上<span style="color:#E76F51;font-weight:bold;">右键该书签 → 编辑</span></div>
+    <div>3. 名称：<b>有害信息录入</b></div>
+    <div>4. 网址框<span style="color:#E76F51;font-weight:bold;">粘贴下面代码</span>，保存</div>
     <div class="code" id="urlbox">加载中...</div>
-    <button style="margin-top:8px;background:#52B788;color:#fff;border:none;padding:6px 16px;border-radius:4px;font-size:13px;cursor:pointer;" onclick="copyUrl()">复制代码</button>
+    <button class="copy-btn" onclick="copyUrl()">复制代码</button>
   </div>
 </div>
 
