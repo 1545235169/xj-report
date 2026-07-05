@@ -667,10 +667,10 @@ if (document.getElementById('xj-panel')) {
             + '  <div id="xj-btns" style="display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap;flex-shrink:0">'
             + '    <button id="xj-parse">📋 解析数据</button>'
             + '    <button id="xj-start">▶ 开始录入</button>'
-            + '    <button id="xj-auto" class="active" style="margin-left:auto">⚡ 自动模式: 开</button>'
+            + '    <button id="xj-auto" style="margin-left:auto">⚡ 自动模式: 开</button>'
             + '  </div>'
             + '  <div style="font-size:12px;color:#666;margin-bottom:4px;flex-shrink:0">📝 数据输入区（直接粘贴，自动识别格式）</div>'
-            + '  <textarea id="xj-data" placeholder="微博: tab分隔3列（名称&#10;链接&#10;内容）&#10;&#10;头条: 标题：+链接+内容&#10;可直接全选粘贴混合数据"></textarea>'
+            + '  <textarea id="xj-data" placeholder="微博: 复制表格3列（名称/链接/内容）&#10;&#10;头条: 标题：+链接+内容&#10;可直接全选粘贴混合数据"></textarea>'
             + '  <div id="xj-progress"></div>'
             + '  <div id="xj-log"></div>'
             + '</div>';
@@ -766,7 +766,7 @@ if (document.getElementById('xj-panel')) {
                     isAutoConfirm = true;
                     var autoBtn = document.getElementById('xj-auto');
                     autoBtn.textContent = '⚡ 自动模式: 开';
-                    autoBtn.classList.add('active');
+                    autoBtn.classList.remove('active');
                     log('⚡ 自动模式已自动开启，填完后自动点击"确定"');
                 }
                 console.log('[录入工具] 解析结果（共' + records.length + '条）：');
@@ -776,7 +776,7 @@ if (document.getElementById('xj-panel')) {
                         + ' | 内容=' + (r['举报内容*'] || r['举报内容'] || '-').substring(0, 30));
                 });
             } else {
-                log('⚠ 未解析到数据，请检查格式<br>提示：粘贴 tab 分隔的3列数据，无需表头');
+                log('⚠ 未解析到数据，请检查格式<br>提示：微博复制表格3列，头条复制标题+链接+内容');
             }
         };
 
@@ -800,12 +800,12 @@ if (document.getElementById('xj-panel')) {
             isAutoConfirm = !isAutoConfirm;
             if (isAutoConfirm) {
                 btn.textContent = '⚡ 自动模式: 开';
-                btn.classList.add('active');
+                btn.classList.remove('active');
                 log('⚡ 自动模式已开启，填完后自动点击"确定"');
             } else {
-                btn.textContent = '✋ 自动模式: 关';
-                btn.classList.remove('active');
-                log('✋ 自动模式已关闭，需手动点击"确定"');
+                btn.textContent = '✋ 手动模式';
+                btn.classList.add('active');
+                log('✋ 已切换手动模式，需手动点击"确定"');
             }
         };
     }
